@@ -114,8 +114,8 @@ export default function Editor() {
             <Input
               value={project.title}
               onChange={(e) => setProject({ ...project, title: e.target.value })}
-              className="text-2xl font-bold border-none p-0 h-auto focus-visible:ring-0"
-              placeholder="Project Title"
+              className="text-2xl font-bold border-2 border-dashed border-border/40 hover:border-primary/40 focus:border-primary rounded-lg px-3 py-2 h-auto transition-colors bg-muted/30 hover:bg-muted/50"
+              placeholder="Click to edit project title..."
             />
           </div>
           <div className="flex gap-2">
