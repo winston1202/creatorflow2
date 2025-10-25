@@ -169,9 +169,14 @@ export default function Signup() {
             </p>
           </form>
 
-          <div className="mt-6 text-center text-xs text-muted-foreground">
+          <div className="mt-6 text-center text-xs text-muted-foreground space-y-2">
             <p>✓ No credit card required</p>
-            <p className="mt-1">✓ All data stored locally on your device</p>
+            <p>✓ All data stored locally on your device</p>
+            <div className="mt-3 p-3 rounded-lg bg-primary/5 border border-primary/10">
+              <p className="font-medium text-primary">Try demo account first:</p>
+              <p className="mt-1">Email: <span className="font-mono">demo@creatorflow.com</span></p>
+              <p>Password: <span className="font-mono">demo123</span></p>
+            </div>
           </div>
         </div>
       </div>

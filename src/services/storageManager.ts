@@ -67,6 +67,25 @@ class StorageManager {
   }
 
   login(email: string, password: string): User | null {
+    // Demo account always works
+    if (email === 'demo@creatorflow.com' && password === 'demo123') {
+      const demoUser: User = {
+        id: 'demo_user',
+        username: 'DemoCreator',
+        email: 'demo@creatorflow.com',
+        plan: 'professional',
+        createdAt: new Date().toISOString(),
+        preferences: {
+          theme: 'blue',
+          autosave: true,
+          notifications: true,
+        },
+      };
+      this.saveUser(demoUser);
+      localStorage.setItem('creatorflow_session', 'active');
+      return demoUser;
+    }
+
     const storedAuth = localStorage.getItem('creatorflow_auth');
     const attemptAuth = btoa(email + ':' + password);
     

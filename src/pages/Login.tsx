@@ -122,9 +122,13 @@ export default function Login() {
             </p>
           </form>
 
-          <div className="mt-6 text-center text-xs text-muted-foreground">
-            <p>Demo: Use any email/password to create an account</p>
-            <p className="mt-1">All data is stored locally on your device</p>
+          <div className="mt-6 text-center text-xs text-muted-foreground space-y-2">
+            <div className="p-3 rounded-lg bg-primary/5 border border-primary/10">
+              <p className="font-medium text-primary">Demo Account:</p>
+              <p className="mt-1">Email: <span className="font-mono">demo@creatorflow.com</span></p>
+              <p>Password: <span className="font-mono">demo123</span></p>
+            </div>
+            <p className="mt-2">All data is stored locally on your device</p>
           </div>
         </div>
       </div>
