@@ -34,6 +34,10 @@ export const mockAPI = {
 
   async getCurrentUser(): Promise<User | null> {
     await delay(100);
+    // Check if user has an active session
+    if (!storage.isLoggedIn()) {
+      return null;
+    }
     return storage.getUser();
   },
 

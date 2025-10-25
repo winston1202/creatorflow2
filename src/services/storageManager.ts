@@ -61,6 +61,8 @@ class StorageManager {
     this.saveUser(user);
     // Store password hash (in real app, this would be on backend)
     localStorage.setItem('creatorflow_auth', btoa(email + ':' + password));
+    // Create active session
+    localStorage.setItem('creatorflow_session', 'active');
     return user;
   }
 
@@ -69,18 +71,22 @@ class StorageManager {
     const attemptAuth = btoa(email + ':' + password);
     
     if (storedAuth === attemptAuth) {
+      // Create active session
+      localStorage.setItem('creatorflow_session', 'active');
       return this.getUser();
     }
     return null;
   }
 
   logout(): void {
-    // Keep projects but clear session
+    // Clear session but keep projects and user data for re-login
+    localStorage.removeItem('creatorflow_session');
     sessionStorage.clear();
   }
 
   isLoggedIn(): boolean {
-    return this.getUser() !== null;
+    // Check if there's an active session
+    return localStorage.getItem('creatorflow_session') === 'active' && this.getUser() !== null;
   }
 
   // Project Management
