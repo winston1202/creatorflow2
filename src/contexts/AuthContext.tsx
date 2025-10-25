@@ -9,6 +9,7 @@ interface AuthContextType {
   signup: (username: string, email: string, password: string) => Promise<boolean>;
   logout: () => Promise<void>;
   isAuthenticated: boolean;
+  updateProfile: (updates: Partial<User>) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -67,6 +68,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
+  const updateProfile = (updates: Partial<User>) => {
+    if (user) {
+      const updatedUser = { ...user, ...updates };
+      setUser(updatedUser);
+      mockAPI.updateUser(updatedUser);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -76,6 +85,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         signup,
         logout,
         isAuthenticated: !!user,
+        updateProfile,
       }}
     >
       {children}

@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { mockAPI } from '@/services/mockAPI';
 import { Project } from '@/services/storageManager';
-import { Plus, Video, Clock, Trash2, Edit } from 'lucide-react';
+import { Plus, Video, Clock, Trash2, Edit, Sparkles } from 'lucide-react';
 import { toast } from 'sonner';
 
 export default function Dashboard() {
@@ -145,20 +145,33 @@ export default function Dashboard() {
 
         {/* Projects Grid */}
         {projects.length === 0 ? (
-          <Card className="p-12 text-center">
-            <div className="mx-auto w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mb-4">
-              <Video className="h-8 w-8 text-primary" />
+          <Card className="p-12 text-center dashboard-projects">
+            <div className="mx-auto w-20 h-20 rounded-full bg-gradient-to-br from-primary/20 to-primary/10 flex items-center justify-center mb-6 animate-pulse">
+              <Video className="h-10 w-10 text-primary animate-bounce" style={{ animationDuration: '2s' }} />
             </div>
-            <h3 className="text-xl font-semibold mb-2">No projects yet</h3>
-            <p className="text-muted-foreground mb-6">
-              Create your first video project to get started
+            <h3 className="text-2xl font-semibold mb-3">No projects yet</h3>
+            <p className="text-muted-foreground mb-8 max-w-md mx-auto">
+              Create your first video project to get started on your creative journey
             </p>
             <Link to="/editor">
-              <Button className="gap-2">
-                <Plus className="h-4 w-4" />
-                Create Project
+              <Button size="lg" className="gap-2 group hover:scale-105 transition-transform">
+                <Plus className="h-5 w-5 group-hover:rotate-90 transition-transform" />
+                Create Your First Project
               </Button>
             </Link>
+            
+            {/* Floating elements animation */}
+            <div className="mt-12 flex justify-center gap-4">
+              <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center animate-float" style={{ animationDelay: '0s' }}>
+                <Sparkles className="h-6 w-6 text-primary" />
+              </div>
+              <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center animate-float" style={{ animationDelay: '0.5s' }}>
+                <Video className="h-6 w-6 text-primary" />
+              </div>
+              <div className="h-12 w-12 rounded-lg bg-primary/10 flex items-center justify-center animate-float" style={{ animationDelay: '1s' }}>
+                <Edit className="h-6 w-6 text-primary" />
+              </div>
+            </div>
           </Card>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

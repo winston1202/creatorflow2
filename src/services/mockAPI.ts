@@ -41,6 +41,12 @@ export const mockAPI = {
     return storage.getUser();
   },
 
+  async updateUser(user: User): Promise<User> {
+    await delay();
+    storage.saveUser(user);
+    return user;
+  },
+
   // Project endpoints
   async getProjects(): Promise<Project[]> {
     await delay();

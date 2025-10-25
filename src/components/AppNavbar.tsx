@@ -1,7 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '@/contexts/AuthContext';
 import { Button } from './ui/button';
-import { Video, LayoutDashboard, User, Star, Settings, LogOut, Menu, X } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
+import { Video, LayoutDashboard, User, Star, Settings, LogOut, Menu, X, Users } from 'lucide-react';
 import { useState } from 'react';
 
 export const AppNavbar = () => {
@@ -14,6 +15,7 @@ export const AppNavbar = () => {
   const navLinks = [
     { path: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { path: '/editor', label: 'Editor', icon: Video },
+    { path: '/community', label: 'Community', icon: Users },
     { path: '/reviews', label: 'Reviews', icon: Star },
     { path: '/profile', label: 'Profile', icon: User },
     { path: '/settings', label: 'Settings', icon: Settings },
@@ -53,8 +55,14 @@ export const AppNavbar = () => {
 
         {/* User Menu */}
         <div className="hidden md:flex items-center gap-3">
+          <Avatar className="h-9 w-9">
+            <AvatarImage src={user?.avatar} alt={user?.username} />
+            <AvatarFallback className="bg-primary/10 text-primary font-semibold">
+              {user?.username?.[0]?.toUpperCase() || 'U'}
+            </AvatarFallback>
+          </Avatar>
           <div className="text-sm">
-            <p className="font-medium">{user?.username}</p>
+            <p className="font-medium">{user?.username || 'UserFallbackName'}</p>
             <p className="text-xs text-muted-foreground capitalize">{user?.plan} Plan</p>
           </div>
           <Button variant="ghost" size="icon" onClick={() => logout()}>
@@ -96,8 +104,18 @@ export const AppNavbar = () => {
               );
             })}
             <div className="pt-4 border-t border-border/40 space-y-2">
-              <p className="px-3 text-sm font-medium">{user?.username}</p>
-              <p className="px-3 text-xs text-muted-foreground capitalize">{user?.plan} Plan</p>
+              <div className="flex items-center gap-3 px-3">
+                <Avatar className="h-10 w-10">
+                  <AvatarImage src={user?.avatar} alt={user?.username} />
+                  <AvatarFallback className="bg-primary/10 text-primary font-semibold">
+                    {user?.username?.[0]?.toUpperCase() || 'U'}
+                  </AvatarFallback>
+                </Avatar>
+                <div>
+                  <p className="text-sm font-medium">{user?.username || 'UserFallbackName'}</p>
+                  <p className="text-xs text-muted-foreground capitalize">{user?.plan} Plan</p>
+                </div>
+              </div>
               <Button
                 variant="ghost"
                 className="w-full justify-start gap-2"
